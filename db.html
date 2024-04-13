@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .captcha-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .captcha-container img {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm" action="db.php" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+    <hr>
+    <button onclick="showCreateUserForm()">Create New User</button>
+    <form id="createUserForm" action="create_user.php" method="POST" style="display: none;">
+        <input type="text" name="newUsername" placeholder="Enter New Username" required>
+        <input type="password" name="newPassword" placeholder="Enter New Password" required>
+        <button type="submit">Create User</button>
+    </form>
+</div>
+<script src="scripts.js"></script>
+<script>
+    function showCreateUserForm() {
+        var createUserForm = document.getElementById("createUserForm");
+        if (createUserForm.style.display === "none") {
+            createUserForm.style.display = "block";
+        } else {
+            createUserForm.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
