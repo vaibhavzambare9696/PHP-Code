@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profiles</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="logo">
+      <img src="logo.png" height="30">
+      <a href="index.html"><button class="home" type="button">Home</button></a>
+      <div class="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Search</button>
+        <a href="login.html"><button class="logout" type="button">Logout</button></a>
+      </div>
+    </div>
+  </nav>
+  <h2>User Profiles</h2>
+  <form action="fetch_profiles.php">
+  <div class="container">
+    <div class="options mb-3">
+      <button class="btn btn-primary" id="viewDataBtn">View Data</button>
+  </form>
+      <label for="filter">Filter By:</label>
+      <select id="filter" class="form-control">
+        <option value="all">All</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <!-- Add more filter options if needed -->
+      </select>
+      <label for="sort">Sort By:</label>
+      <select id="sort" class="form-control">
+        <option value="id_asc">ID (Ascending)</option>
+        <option value="id_desc">ID (Descending)</option>
+        <option value="first_name_asc">First Name (Ascending)</option>
+        <option value="first_name_desc">First Name (Descending)</option>
+        <!-- Add more sorting options if needed -->
+      </select>
+    </div>
+    <div id="profileTableDiv" class="table-responsive">
+      <!-- Profile data table will be displayed here -->
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // View Data button click event
+      $('#viewDataBtn').click(function() {
+        $.ajax({
+          url: 'fetch_profiles.php', // PHP script to fetch profiles
+          type: 'GET',
+          success: function(response) {
+            $('#profileTableDiv').html(response); // Display the fetched profiles in the div
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
